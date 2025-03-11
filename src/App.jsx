@@ -4,6 +4,7 @@ import "./App.css";
 function App() {
   const [fields, setFields] = useState([{id: 1, name: "", gender: "", nameError: false, genderError: false}]);
   console.log(fields);
+  const [showValue, setShowValue] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,25 +15,30 @@ function App() {
         genderError: !field.gender,
       }))
     );
+    setShowValue(true);
   };
 
   const handleAddField = () => {
     setFields([...fields, {id: fields.length + 1, name: "", gender: "", nameError: false, genderError: false}]);
+    setShowValue(false);
   };
 
   const handleNameChange = (id, e) => {
     const {value} = e.target;
     setFields(fields.map((field) => (field.id === id ? {...field, name: value, nameError: false} : field)));
+    setShowValue(false);
   };
 
   const handleGenderChange = (id, e) => {
     const {value} = e.target;
     setFields(fields.map((field) => (field.id === id ? {...field, gender: value, genderError: false} : field)));
+    setShowValue(false);
   };
 
   const handleRemove = (e, id) => {
     console.log(id);
     setFields(fields.filter((field) => field.id !== id));
+    setShowValue(false);
   };
 
   return (
@@ -81,6 +87,34 @@ function App() {
           className="bg-gray-400 px-3"
         />
       </form>
+
+      {showValue ? (
+        fields.length ? (
+          <>
+            <h3 className="mt-6 text-xl font-semibold">Form State:</h3>
+            <table className="w-full border mt-2">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="border px-4 py-2">Name</th>
+                  <th className="border px-4 py-2">Gender</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fields.map((field) => (
+                  <tr key={field.id}>
+                    <td className="border px-4 py-2">{field.name || "-"}</td>
+                    <td className="border px-4 py-2">{field.gender || "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ) : (
+          <></>
+        )
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
