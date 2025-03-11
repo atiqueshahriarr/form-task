@@ -7,7 +7,8 @@ function App() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
 
-  const [field, setField] = useState(1);
+  const [fields, setFields] = useState([{id: 1, name: "", gender: "", error: ""}]);
+  console.log(fields);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,25 +32,37 @@ function App() {
     }
   };
 
-  const handleAddField = (e) => {
-    setField(field+1);
+  const handleAddField = () => {
+    setFields([...fields, {id: fields.length + 1, name: "", gender: "", error: ""}]);
+  };
+
+  const handleNameChange = (id, e) => {
+    const {value} = e.target;
+    setFields(fields.map((field) => (field.id === id ? {...field, name: value} : field)));
+  };
+
+  const handleGenderChange = (id, e) => {
+    const {value} = e.target;
+    setFields(fields.map((field) => (field.id === id ? {...field, gender: value} : field)));
   };
 
   return (
     <div className="">
       <button onClick={handleAddField}>+</button>
 
-      {new Array(field).fill(null).map((_, index) => (
+      {fields.map((field) => (
         <form
           action=""
-          onSubmit={handleSubmit}
-          className="flex gap-4">
+          onSubmit={(e) => handleSubmit(e, field.id)}
+          className="flex gap-4"
+          key={field.id}>
           <div>
             <input
               type="text"
               id="name"
               placeholder="Enter your name"
               className=" w-56 border-2 px-4 py-2 rounded-lg outline-0"
+              onChange={(e) => handleNameChange(field.id, e)}
             />
             {nameError ? <div>Please enter your name</div> : <></>}
           </div>
@@ -57,7 +70,9 @@ function App() {
             <select
               className=" w-56 border-2 px-4 py-2 rounded-lg outline-0"
               name="gender"
-              id="gender">
+              id="gender"
+              value={field.gender}
+              onChange={(e) => handleGenderChange(field.id, e)}>
               <option>Select Option</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
