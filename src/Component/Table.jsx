@@ -6,10 +6,10 @@ const Table = ({showValue, fields}) => {
       {showValue ? (
         fields.length ? (
           <>
-            <h3 className="mt-10 text-lg font-semibold text-tomato">Form State:</h3>
-            <table className="w-full border border-neutral-600 mt-2 text-sm md:text-base">
+            <h3 className="mt-10 text-lg font-semibold text-primary">Form State:</h3>
+            <table className="w-full border border-neutral-600 mt-2 ">
               <thead>
-                <tr className="bg-tomato ">
+                <tr className="bg-primary ">
                   <th className="border border-neutral-600 px-4 py-1">Name</th>
                   <th className="border border-neutral-600 px-4 py-1">Gender</th>
                 </tr>

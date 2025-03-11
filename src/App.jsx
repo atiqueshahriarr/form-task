@@ -44,11 +44,11 @@ function App() {
 
   return (
     <div className="bg-neutral-900 min-h-screen w-full flex items-center justify-center py-10">
-      <div className="text-white bg-neutral-800 px-2 py-4 md:p-10 rounded-2xl">
+      <div className="text-white bg-neutral-800 p-6 md:p-10 rounded-2xl">
         <div className="flex justify-between items-center mb-4 gap-6 font-semibold">
-          <p className="text-xl md:text-3xl text-tomato">Information:</p>
+          <p className="text-2xl md:text-3xl text-primary">Information:</p>
           <button
-            className="bg-tomato text-sm h-8  w-26 md:w-32 flex items-center justify-center md:gap-2  rounded-lg hover:bg-neutral-800 hover:text-tomato hover:border-2 hover:border-tomato cursor-pointer transition-all duration-300"
+            className="bg-primary text-sm md:text-base h-8  w-26 md:w-32 flex items-center justify-center gap-2     font-semibold    rounded-lg  hover:bg-secondary cursor-pointer transition-all duration-300"
             onClick={handleAddField}>
             Add Field
             <svg
@@ -57,11 +57,12 @@ function App() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6">
+              class="size-6"
+              className="w-5">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
+                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
           </button>
@@ -70,25 +71,25 @@ function App() {
         <form
           action=""
           onSubmit={handleSubmit}
-          className="space-y-2 text-sm md:text-base">
+          className="space-y-2">
           {fields.map((field) => (
             <div
-              className="flex gap-1 md:gap-4"
+              className="flex  gap-2 md:gap-3"
               key={field.id}>
               <div>
                 <input
                   type="text"
                   id="name"
                   placeholder="Enter your name"
-                  className="w-40 md:w-56 border-2  border-neutral-700 focus:border-neutral-500  px-4 h-8 md:h-10 rounded-lg outline-0"
+                  className="w-48 md:w-60 border-2  border-neutral-700 focus:border-neutral-500  px-4 h-10 rounded-lg outline-0"
                   value={field.name}
                   onChange={(e) => handleNameChange(field.id, e)}
                 />
-                {field.nameError ? <div className="text-xs text-tomato">Please enter your name *</div> : <></>}
+                {field.nameError ? <div className="text-xs text-primary">Please enter your name *</div> : <></>}
               </div>
               <div>
                 <select
-                  className=" w-fit border-2 border-neutral-700 focus:border-neutral-500  px-4 h-8 md:h-10 rounded-lg outline-0 "
+                  className=" w-fit border-2 border-neutral-700 focus:border-neutral-500  px-4 h-10 rounded-lg outline-0 "
                   name="gender"
                   id="gender"
                   value={field.gender}
@@ -96,24 +97,24 @@ function App() {
                   <option
                     disabled
                     value=""
-                    className="bg-neutral-900 hover:bg-tomato">
+                    className="bg-neutral-900 hover:bg-primary">
                     Gender
                   </option>
                   <option
-                    className="bg-neutral-900 hover:bg-tomato"
+                    className="bg-neutral-900 hover:bg-primary"
                     value="Male">
                     Male
                   </option>
                   <option
-                    className="bg-neutral-900 hover:bg-tomato"
+                    className="bg-neutral-900 hover:bg-primary"
                     value="Female">
                     Female
                   </option>
                 </select>
-                {field.genderError ? <div className="text-xs text-tomato">Select gender *</div> : <></>}
+                {field.genderError ? <div className="text-xs text-primary">Select gender *</div> : <></>}
               </div>
               <a
-                className="md:bg-tomato text-3xl p-2 h-8 md:h-10 w-8 md:w-10 flex items-center justify-center  rounded-lg hover:bg-neutral-800 hover:text-tomato md:hover:border-2 hover:border-tomato cursor-pointer transition-all duration-300"
+                className="flex items-center justify-center h-10  hover:text-primary cursor-pointer transition-all duration-300"
                 onClick={(e) => handleRemove(e, field.id)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +122,8 @@ function App() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="size-6">
+                  class="size-6"
+                  className="w-5">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -135,7 +137,7 @@ function App() {
           <input
             type="submit"
             value="Submit"
-            className="bg-tomato font-bold h-8 w-full flex items-center justify-center  rounded-lg  hover:bg-[#ff4747] cursor-pointer transition-all duration-300"
+            className="bg-primary font-bold h-8 w-full flex items-center justify-center  rounded-lg  hover:bg-secondary cursor-pointer transition-all duration-300"
           />
         </form>
 
