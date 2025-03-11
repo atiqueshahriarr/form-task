@@ -4,12 +4,13 @@ import "./App.css";
 function App() {
   const [nameError, setNameError] = useState(false);
   const [genderError, setGenderError] = useState(false);
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const gender = e.target.gender.value;
-    console.log(name, gender);
 
     if (!name.length) {
       setNameError(true);
@@ -17,12 +18,14 @@ function App() {
       setNameError(true);
     } else {
       setNameError(false);
+      setName(name);
     }
 
     if (gender == "Select Option") {
       setGenderError(true);
     } else {
       setGenderError(false);
+      setGender(gender);
     }
   };
 
@@ -47,9 +50,9 @@ function App() {
               name="gender"
               id="gender">
               <option>Select Option</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="others">Others</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Others">Others</option>
             </select>
             {genderError ? <div>Select your gender</div> : <></>}
           </div>
@@ -59,6 +62,14 @@ function App() {
           value="Submit"
         />
       </form>
+      <div>
+        {
+          name && gender? <div>
+            <h3>Name: {name}</h3>
+            <h3>Gender: {gender}</h3>
+          </div>:<></>
+        }
+      </div>
     </div>
   );
 }
