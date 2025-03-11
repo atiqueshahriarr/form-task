@@ -46,9 +46,9 @@ function App() {
     <div className="bg-neutral-900 min-h-screen w-full flex items-center justify-center py-10">
       <div className="text-white bg-neutral-800 px-2 py-4 md:p-10 rounded-2xl">
         <div className="flex justify-between items-center mb-4 gap-6 font-semibold">
-          <p className="text-xl md:text-3xl text-[#ff6347]">Information:</p>
+          <p className="text-xl md:text-3xl text-tomato">Information:</p>
           <button
-            className="bg-[#ff6347] text-sm h-8 md:h-10 w-26 md:w-32 flex items-center justify-center md:gap-2  rounded-lg hover:bg-neutral-800 hover:text-[#ff6347] hover:border-2 hover:border-[#ff6347] cursor-pointer transition-all duration-300"
+            className="bg-tomato text-sm h-8  w-26 md:w-32 flex items-center justify-center md:gap-2  rounded-lg hover:bg-neutral-800 hover:text-tomato hover:border-2 hover:border-tomato cursor-pointer transition-all duration-300"
             onClick={handleAddField}>
             Add Field
             <svg
@@ -70,7 +70,7 @@ function App() {
         <form
           action=""
           onSubmit={handleSubmit}
-          className="space-y-2 text-sm md:text-md">
+          className="space-y-2 text-sm md:text-base">
           {fields.map((field) => (
             <div
               className="flex gap-1 md:gap-4"
@@ -84,7 +84,7 @@ function App() {
                   value={field.name}
                   onChange={(e) => handleNameChange(field.id, e)}
                 />
-                {field.nameError ? <div className="text-xs text-[#ff6347]">Please enter your name *</div> : <></>}
+                {field.nameError ? <div className="text-xs text-tomato">Please enter your name *</div> : <></>}
               </div>
               <div>
                 <select
@@ -96,24 +96,24 @@ function App() {
                   <option
                     disabled
                     value=""
-                    className="bg-neutral-900 hover:bg-[#ff6347]">
+                    className="bg-neutral-900 hover:bg-tomato">
                     Gender
                   </option>
                   <option
-                    className="bg-neutral-900 hover:bg-[#ff6347]"
+                    className="bg-neutral-900 hover:bg-tomato"
                     value="Male">
                     Male
                   </option>
                   <option
-                    className="bg-neutral-900 hover:bg-[#ff6347]"
+                    className="bg-neutral-900 hover:bg-tomato"
                     value="Female">
                     Female
                   </option>
                 </select>
-                {field.genderError ? <div className="text-xs text-[#ff6347]">Select gender *</div> : <></>}
+                {field.genderError ? <div className="text-xs text-tomato">Select gender *</div> : <></>}
               </div>
               <a
-                className="md:bg-[#ff6347] text-3xl p-2 h-8 md:h-10 w-8 md:w-10 flex items-center justify-center  rounded-lg hover:bg-neutral-800 hover:text-[#ff6347] md:hover:border-2 hover:border-[#ff6347] cursor-pointer transition-all duration-300"
+                className="md:bg-tomato text-3xl p-2 h-8 md:h-10 w-8 md:w-10 flex items-center justify-center  rounded-lg hover:bg-neutral-800 hover:text-tomato md:hover:border-2 hover:border-tomato cursor-pointer transition-all duration-300"
                 onClick={(e) => handleRemove(e, field.id)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,10 +135,10 @@ function App() {
           <input
             type="submit"
             value="Submit"
-            className="bg-[#ff6347] font-bold h-8 md:h-10 w-full flex items-center justify-center  rounded-lg  hover:bg-[#ff4747] cursor-pointer transition-all duration-300"
+            className="bg-tomato font-bold h-8 w-full flex items-center justify-center  rounded-lg  hover:bg-[#ff4747] cursor-pointer transition-all duration-300"
           />
         </form>
-        
+
         <Table
           showValue={showValue}
           fields={fields}></Table>
