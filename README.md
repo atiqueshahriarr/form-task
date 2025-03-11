@@ -1,6 +1,6 @@
 # User Information Form
 
-## Live Link: [https://form-task-umber-six.vercel.app/]
+## Live Link: https://form-task-umber-six.vercel.app/
 
 ## Features
 
