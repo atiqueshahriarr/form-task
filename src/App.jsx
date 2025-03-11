@@ -46,27 +46,30 @@ function App() {
     setFields(fields.map((field) => (field.id === id ? {...field, gender: value} : field)));
   };
 
+  const handleRemove = (e,id) => {
+    console.log(id);
+    setFields(fields.filter((field) => field.id !== id));
+  };
+
   return (
     <div className="">
       <button onClick={handleAddField}>+</button>
 
-      {fields.map((field) => (
-        <form
-          action=""
-          onSubmit={(e) => handleSubmit(e, field.id)}
-          className="flex gap-4"
-          key={field.id}>
-          <div>
+      <form
+        action=""
+        onSubmit={handleSubmit}
+        className="space-y-6">
+        {fields.map((field) => (
+          <div className="flex gap-4" key={field.id}>
             <input
               type="text"
               id="name"
               placeholder="Enter your name"
               className=" w-56 border-2 px-4 py-2 rounded-lg outline-0"
+              value={field.value}
               onChange={(e) => handleNameChange(field.id, e)}
             />
-            {nameError ? <div>Please enter your name</div> : <></>}
-          </div>
-          <div>
+            {/* {nameError ? <div>Please enter your name</div> : <></>} */}
             <select
               className=" w-56 border-2 px-4 py-2 rounded-lg outline-0"
               name="gender"
@@ -76,18 +79,22 @@ function App() {
               <option>Select Option</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
-              <option value="Others">Others</option>
             </select>
-            {genderError ? <div>Select your gender</div> : <></>}
+            {/* {genderError ? <div>Select your gender</div> : <></>} */}
+            <a
+              className="bg-amber-100 text-3xl px-4 cursor-pointer"
+              onClick={(e) => handleRemove(e, field.id)}>
+              -
+            </a>
           </div>
+        ))}
 
-          <input
-            type="submit"
-            value="Submit"
-            className="bg-gray-400 px-3"
-          />
-        </form>
-      ))}
+        <input
+          type="submit"
+          value="Submit"
+          className="bg-gray-400 px-3"
+        />
+      </form>
 
       {/* <form
         action=""
